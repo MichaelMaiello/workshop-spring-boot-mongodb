@@ -1,8 +1,11 @@
 package com.qintess.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -17,6 +20,9 @@ public class User implements Serializable{
 	private String id;
 	private String name;
 	private String email;
+	@DBRef(lazy = true)
+	private List<Post> post = new ArrayList<>();
+	
 	
 	
 	
@@ -56,6 +62,14 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Post> getPost() {
+		return post;
+	}
+
+	public void setPost(List<Post> post) {
+		this.post = post;
+	}
 
 	
 	
@@ -83,4 +97,6 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 }
